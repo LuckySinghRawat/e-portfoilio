@@ -12,12 +12,68 @@ const externalAttrs = 'target="_blank" rel="noopener noreferrer"';
 function renderSocialLinks() {
     const labels = { github: "GitHub", linkedin: "LinkedIn", email: "Email", blog: "Blog" };
     document.getElementById("hero-socials").innerHTML = Object.entries(SITE_CONFIG.links).map(([key, url]) =>
-        `<a class="icon-link" href="${escapeHTML(url)}" ${key === "email" ? "" : externalAttrs} aria-label="${labels[key]}">${iconMarkup[key]}</a>`
+        key === "email"
+            ? `<button class="icon-link" type="button" data-copy-email aria-label="Copy email address">${iconMarkup[key]}</button>`
+            : `<a class="icon-link" href="${escapeHTML(url)}" ${externalAttrs} aria-label="${labels[key]}">${iconMarkup[key]}</a>`
     ).join("");
     document.getElementById("connect-actions").innerHTML = ["linkedin", "email", "github", "blog"].map((key) => {
         const label = { linkedin: "LinkedIn", email: "Email", github: "GitHub", blog: "Read Blogs" }[key];
-        return `<a class="button" href="${escapeHTML(SITE_CONFIG.links[key])}" ${key === "email" ? "" : externalAttrs}>${iconMarkup[key]}${label}</a>`;
+        return key === "email"
+            ? `<button class="button" type="button" data-copy-email>${iconMarkup[key]}${label}</button>`
+            : `<a class="button" href="${escapeHTML(SITE_CONFIG.links[key])}" ${externalAttrs}>${iconMarkup[key]}${label}</a>`;
     }).join("");
+}
+
+async function writeTextToClipboard(text) {
+    let clipboardError;
+    if (navigator.clipboard?.writeText) {
+        try {
+            await navigator.clipboard.writeText(text);
+            return;
+        } catch (error) {
+            clipboardError = error;
+        }
+    }
+
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.setAttribute("readonly", "");
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+    document.body.appendChild(textArea);
+    let copied;
+    try {
+        textArea.select();
+        copied = document.execCommand("copy");
+    } finally {
+        textArea.remove();
+    }
+    if (!copied) throw clipboardError || new Error("Clipboard copy command was rejected.");
+}
+
+function setupEmailCopy() {
+    const feedback = document.getElementById("copy-feedback");
+    let feedbackTimeout;
+
+    document.querySelectorAll("[data-copy-email]").forEach((button) => {
+        button.addEventListener("click", async () => {
+            try {
+                await writeTextToClipboard(SITE_CONFIG.links.email);
+                feedback.textContent = "Email copied successfully.";
+                feedback.classList.add("is-visible");
+            } catch (error) {
+                console.error("Could not copy email address:", error);
+                feedback.textContent = "Could not copy the email address. Please try again.";
+                feedback.classList.add("is-visible");
+            }
+
+            window.clearTimeout(feedbackTimeout);
+            feedbackTimeout = window.setTimeout(() => {
+                feedback.classList.remove("is-visible");
+                feedback.textContent = "";
+            }, 3000);
+        });
+    });
 }
 
 function renderFacts() {
@@ -194,6 +250,7 @@ async function initializePortfolio() {
         SITE_CONFIG = await response.json();
 
         renderSocialLinks();
+        setupEmailCopy();
         renderFacts();
         renderProfiles();
         renderSkills();
