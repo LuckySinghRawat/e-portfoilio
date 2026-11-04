@@ -109,7 +109,7 @@ function renderProjects() {
             <div class="detail-block"><h4>Goal achieved</h4><ul class="project-points">${project.goal.map((point) => `<li>${escapeHTML(point)}</li>`).join("")}</ul></div>
             <div class="skill-tags">${project.technologies.map((technology) => `<span class="tag">${escapeHTML(technology)}</span>`).join("")}</div>
             <div class="detail-block"><h4>Learning &amp; impact</h4><ul class="project-points">${project.learning.map((point) => `<li>${escapeHTML(point)}</li>`).join("")}</ul></div>
-            <div class="project-bottom"><a class="proof-link" href="${escapeHTML(project.proof)}" ${externalAttrs}>View Proof</a><span class="placeholder-note">Replace sample content</span></div>
+            <div class="project-bottom"><a class="proof-link" href="${escapeHTML(project.proof)}" ${externalAttrs}>View Proof</a><span class="placeholder-note">Built to learn and apply</span></div>
           </div>
         </article>`).join("");
 }

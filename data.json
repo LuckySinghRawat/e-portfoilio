@@ -27,7 +27,7 @@
       "value": "Learn by doing"
     }
   ],
-  "profilesUpdated": "5-11-2026",
+  "profilesUpdated": "Nov 4,2026",
   "profiles": [
     {
       "name": "TryHackMe",
@@ -53,7 +53,7 @@
       "stats": [
         {
           "label": "Solved",
-          "value": "256"
+          "value": "200+"
         },
         {
           "label": "Streak",
@@ -85,11 +85,11 @@
       "stats": [
         {
           "label": "Blogs",
-          "value": "[Comming Soon]"
+          "value": "[Coming Soon]"
         },
         {
           "label": "Blogs",
-          "value": "[Comming Soon]"
+          "value": "[Coming Soon]"
         }
       ]
     }
@@ -344,7 +344,7 @@
       "items": [
         "Participated in intra-college Capture The Flag (CTF) competitions",
         "Finalist (Top 5) in an intra-college CTF",
-        "Practiced solving security challenges to build hands-on skills in [add categories, e.g. web, cryptography, forensics]"
+        "Practiced solving security challenges to build hands-on skills in web-security, VAPT, cryptography, forensics"
       ],
       "progressLabel": "CTF learning goal",
       "progressText": "Solving intermediate-level challenges on picoCTF and TryHackMe",
@@ -355,11 +355,11 @@
       "items": [
         "Built LegalMitra-AI at a hackathon, an AI-powered legal assistant that helps people understand their rights and act against wrongful activities",
         "Learned how malicious or badly written prompts can manipulate AI behavior (prompt injection)",
-        "Built SFSS(Secure File Storage Systerm) applied role-based secure file storage platform implementing RBAC to manage permissions across 3+ user roles, strengthening access control and reducing unauthorized access risks.",
+        "Built SFSS(Secure File Storage System) applied role-based secure file storage platform implementing RBAC to manage permissions across 3+ user roles, strengthening access control and reducing unauthorized access risks.",
         "Integrated AES-based encryption mechanisms securing 100% of file uploads, storage, and transmission to prevent unauthorized data exposure."
       ],
       "progressLabel": "Participation goal",
-      "progressText": "Moving Forword",
+      "progressText": "Forword",
       "progress": 75
     },
     {
@@ -384,7 +384,7 @@
         "Building projects to apply and better understand what I learn"
       ],
       "progressLabel": "VAPT path",
-      "progressText": "Learning for be better than today",
+      "progressText": "Learning to be better than yesterday",
       "progress": 50
     },
     {
@@ -398,7 +398,7 @@
         "Completed AWS exam prep plans for Solutions Architect Associate (SAA-C03) and DevOps Engineer Professional (DOP-C02), June 2026"
       ],
       "progressLabel": "Next milestone",
-      "progressText": "Moving Forword",
+      "progressText": "Forword",
       "progress": 90
     }
   ]
